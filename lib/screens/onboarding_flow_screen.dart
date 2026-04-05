@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../models/app_role.dart';
 import 'home_screen.dart';
 import '../widgets/onboarding/brand_logo.dart';
 import '../widgets/onboarding/onboarding_action_button.dart';
@@ -53,7 +54,9 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
 
   void _openHome() {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute<void>(builder: (context) => const HomeScreen()),
+      MaterialPageRoute<void>(
+        builder: (context) => const HomeScreen(role: AppRole.admin),
+      ),
     );
   }
 

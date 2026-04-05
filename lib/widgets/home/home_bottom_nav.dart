@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class HomeBottomNav extends StatelessWidget {
-  const HomeBottomNav({super.key, this.currentIndex = 0});
+  const HomeBottomNav({super.key, this.currentIndex = 0, this.onTap});
 
   final int currentIndex;
+  final ValueChanged<int>? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -34,30 +35,37 @@ class HomeBottomNav extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           for (var i = 0; i < items.length; i++)
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  items[i].$1,
-                  size: 20,
-                  color: i == currentIndex
-                      ? const Color(0xFF2A5977)
-                      : const Color(0xFF6A7280),
+            InkWell(
+              onTap: onTap == null ? null : () => onTap!(i),
+              borderRadius: BorderRadius.circular(12),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      items[i].$1,
+                      size: 20,
+                      color: i == currentIndex
+                          ? const Color(0xFF2A5977)
+                          : const Color(0xFF6A7280),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      items[i].$2,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        fontSize: 10,
+                        color: i == currentIndex
+                            ? const Color(0xFF2A5977)
+                            : const Color(0xFF6A7280),
+                        fontWeight: i == currentIndex
+                            ? FontWeight.w700
+                            : FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  items[i].$2,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    fontSize: 10,
-                    color: i == currentIndex
-                        ? const Color(0xFF2A5977)
-                        : const Color(0xFF6A7280),
-                    fontWeight: i == currentIndex
-                        ? FontWeight.w700
-                        : FontWeight.w500,
-                  ),
-                ),
-              ],
+              ),
             ),
         ],
       ),

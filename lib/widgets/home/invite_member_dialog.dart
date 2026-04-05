@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../models/app_role.dart';
+
 class InviteMemberDialog extends StatelessWidget {
   const InviteMemberDialog({super.key});
 
@@ -60,12 +62,15 @@ class InviteMemberDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            DropdownButtonFormField<String>(
-              initialValue: 'Admin',
+            DropdownButtonFormField<AppRole>(
+              initialValue: AppRole.admin,
               items: const [
-                DropdownMenuItem(value: 'Admin', child: Text('Admin')),
-                DropdownMenuItem(value: 'Manager', child: Text('Manager')),
-                DropdownMenuItem(value: 'Worker', child: Text('Worker')),
+                DropdownMenuItem(value: AppRole.admin, child: Text('Admin')),
+                DropdownMenuItem(
+                  value: AppRole.manager,
+                  child: Text('Manager'),
+                ),
+                DropdownMenuItem(value: AppRole.worker, child: Text('Worker')),
               ],
               onChanged: (_) {},
               decoration: InputDecoration(
