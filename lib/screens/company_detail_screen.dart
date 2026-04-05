@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'assigned_projects_screen.dart';
+import 'company_contacts_screen.dart';
+import 'company_documents_screen.dart';
+import 'company_geofencing_screen.dart';
+
 class CompanyDetailScreen extends StatelessWidget {
   const CompanyDetailScreen({super.key});
 
@@ -205,11 +210,51 @@ class CompanyDetailScreen extends StatelessWidget {
                   border: Border.all(color: const Color(0xFFE7EDF3)),
                 ),
                 child: Column(
-                  children: const [
-                    _OptionTile(label: 'Assigned Projects'),
-                    _OptionTile(label: 'Contacts'),
-                    _OptionTile(label: 'Documents'),
-                    _OptionTile(label: 'Geofencing', isLast: true),
+                  children: [
+                    _OptionTile(
+                      label: 'Assigned Projects',
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) =>
+                                const AssignedProjectsScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    _OptionTile(
+                      label: 'Contacts',
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) => const CompanyContactsScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    _OptionTile(
+                      label: 'Documents',
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) =>
+                                const CompanyDocumentsScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    _OptionTile(
+                      label: 'Geofencing',
+                      isLast: true,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) =>
+                                const CompanyGeofencingScreen(),
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -266,10 +311,11 @@ class _SummaryBox extends StatelessWidget {
 }
 
 class _OptionTile extends StatelessWidget {
-  const _OptionTile({required this.label, this.isLast = false});
+  const _OptionTile({required this.label, this.isLast = false, this.onTap});
 
   final String label;
   final bool isLast;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -293,7 +339,7 @@ class _OptionTile extends StatelessWidget {
           size: 16,
           color: Color(0xFF111111),
         ),
-        onTap: () {},
+        onTap: onTap ?? () {},
       ),
     );
   }
