@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'create_project_screen.dart';
+import 'floor_room_setup_screen.dart';
+
 class ProjectDetailsScreen extends StatelessWidget {
   const ProjectDetailsScreen({super.key});
 
@@ -185,7 +188,14 @@ class ProjectDetailsScreen extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: FilledButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute<void>(
+                                              builder: (context) =>
+                                                  const FloorRoomSetupScreen(),
+                                            ),
+                                          );
+                                        },
                                         style: FilledButton.styleFrom(
                                           minimumSize: const Size.fromHeight(
                                             42,
@@ -209,7 +219,17 @@ class ProjectDetailsScreen extends StatelessWidget {
                                     const SizedBox(width: 12),
                                     Expanded(
                                       child: FilledButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute<void>(
+                                              builder: (context) =>
+                                                  const CreateProjectScreen(
+                                                    title: 'Edit Project',
+                                                    submitLabel: 'Save',
+                                                  ),
+                                            ),
+                                          );
+                                        },
                                         style: FilledButton.styleFrom(
                                           minimumSize: const Size.fromHeight(
                                             42,

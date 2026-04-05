@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CreateProjectScreen extends StatefulWidget {
-  const CreateProjectScreen({super.key});
+  const CreateProjectScreen({
+    super.key,
+    this.title = 'Create New Project',
+    this.submitLabel = 'Create Project & Setup Floors',
+  });
+
+  final String title;
+  final String submitLabel;
 
   @override
   State<CreateProjectScreen> createState() => _CreateProjectScreenState();
@@ -40,7 +47,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                       ),
                     ),
                     Text(
-                      'Create New Project',
+                      widget.title,
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: const Color(0xFF222222),
@@ -174,7 +181,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          child: const Text('Create Project & Setup Floors'),
+                          child: Text(widget.submitLabel),
                         ),
                       ),
                     ],
