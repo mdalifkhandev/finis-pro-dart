@@ -41,10 +41,7 @@ class BrandLogo extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
-                border: Border.all(
-                  color: const Color(0xFF5C7C95),
-                  width: 1.5,
-                ),
+                border: Border.all(color: const Color(0xFF5C7C95), width: 1.5),
               ),
               child: Icon(
                 Icons.home_work_outlined,

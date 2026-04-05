@@ -10,16 +10,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flater/main.dart';
 
 void main() {
-  testWidgets('welcome screen renders core content', (
+  testWidgets('onboarding starts at splash and advances to policy', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(const FlaterApp());
 
-    expect(
-      find.text('Build your app with a clean welcome experience.'),
-      findsOneWidget,
-    );
-    expect(find.text('Start Building'), findsOneWidget);
-    expect(find.text('Platforms'), findsOneWidget);
+    expect(find.text('Flater'), findsOneWidget);
+
+    await tester.pump(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Privacy & Policy'), findsOneWidget);
+    expect(find.text('Next'), findsOneWidget);
   });
 }

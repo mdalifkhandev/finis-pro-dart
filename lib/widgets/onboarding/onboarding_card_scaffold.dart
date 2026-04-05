@@ -44,7 +44,10 @@ class OnboardingCardScaffold extends StatelessWidget {
                 if (onBack != null)
                   IconButton(
                     onPressed: onBack,
-                    icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 18,
+                    ),
                     visualDensity: VisualDensity.compact,
                   )
                 else
