@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class OtpCodeInput extends StatelessWidget {
-  const OtpCodeInput({super.key, this.length = 5});
+  const OtpCodeInput({super.key, this.length = 6, this.activeIndex = 0});
 
   final int length;
+  final int activeIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +13,29 @@ class OtpCodeInput extends StatelessWidget {
       children: List.generate(
         length,
         (index) => Container(
-          width: 44,
-          height: 50,
+          width: 32,
+          height: 32,
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
-            color: const Color(0xFFF7F9FC),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0xFFD7DEE7)),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(
+              color: index == activeIndex
+                  ? const Color(0xFF2C2C2C)
+                  : const Color(0xFFB7C1CB),
+            ),
           ),
+          child: index == activeIndex
+              ? const Center(
+                  child: Text(
+                    '|',
+                    style: TextStyle(
+                      color: Color(0xFF2C2C2C),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                )
+              : null,
         ),
       ),
     );

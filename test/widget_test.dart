@@ -15,7 +15,7 @@ void main() {
   ) async {
     await tester.pumpWidget(const FlaterApp());
 
-    expect(find.text('Flater'), findsOneWidget);
+    expect(find.text('Finis'), findsOneWidget);
 
     await tester.pump(const Duration(seconds: 2));
     await tester.pumpAndSettle();
