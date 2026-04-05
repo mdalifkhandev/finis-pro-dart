@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'project_worker_team_screen.dart';
+
 class ProjectTeamScreen extends StatelessWidget {
   const ProjectTeamScreen({super.key});
 
@@ -71,13 +73,21 @@ class ProjectTeamScreen extends StatelessWidget {
               Expanded(
                 child: ListView(
                   padding: const EdgeInsets.only(bottom: 18),
-                  children: const [
+                  children: [
                     _MemberCard(
                       name: 'John Smith',
                       role: 'Project Manager',
                       email: 'john@example.com',
                       phone: '(555) 123-4567',
                       avatarColor: Color(0xFFD0A37D),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) =>
+                                const ProjectWorkerTeamScreen(),
+                          ),
+                        );
+                      },
                     ),
                     _MemberCard(
                       name: 'Sarah Johnson',
@@ -85,6 +95,14 @@ class ProjectTeamScreen extends StatelessWidget {
                       email: 'sarah@example.com',
                       phone: '(555) 234-5678',
                       avatarColor: Color(0xFFD8C7A1),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) =>
+                                const ProjectWorkerTeamScreen(),
+                          ),
+                        );
+                      },
                     ),
                     _MemberCard(
                       name: 'Mike Davis',
@@ -92,6 +110,14 @@ class ProjectTeamScreen extends StatelessWidget {
                       email: 'mike@example.com',
                       phone: '(555) 345-6789',
                       avatarColor: Color(0xFFC9D0DB),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) =>
+                                const ProjectWorkerTeamScreen(),
+                          ),
+                        );
+                      },
                     ),
                     _MemberCard(
                       name: 'Emily Chen',
@@ -99,6 +125,14 @@ class ProjectTeamScreen extends StatelessWidget {
                       email: 'emily@example.com',
                       phone: '(555) 456-7890',
                       avatarColor: Color(0xFFD79DA4),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) =>
+                                const ProjectWorkerTeamScreen(),
+                          ),
+                        );
+                      },
                     ),
                     _MemberCard(
                       name: 'Emily Chen',
@@ -107,6 +141,14 @@ class ProjectTeamScreen extends StatelessWidget {
                       phone: '(555) 456-7890',
                       avatarColor: Color(0xFFD79DA4),
                       isLast: true,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) =>
+                                const ProjectWorkerTeamScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -281,6 +323,7 @@ class _MemberCard extends StatelessWidget {
     required this.phone,
     required this.avatarColor,
     this.isLast = false,
+    this.onTap,
   });
 
   final String name;
@@ -289,81 +332,93 @@ class _MemberCard extends StatelessWidget {
   final String phone;
   final Color avatarColor;
   final bool isLast;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      margin: EdgeInsets.only(bottom: isLast ? 0 : 14),
-      padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFE7EDF3)),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x0C0B2239),
-            blurRadius: 14,
-            offset: Offset(0, 6),
+        onTap: onTap,
+        child: Container(
+          margin: EdgeInsets.only(bottom: isLast ? 0 : 14),
+          padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: const Color(0xFFE7EDF3)),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x0C0B2239),
+                blurRadius: 14,
+                offset: Offset(0, 6),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: avatarColor,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(Icons.person, size: 24, color: Color(0xFF4C4C4C)),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: avatarColor,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.person,
+                  size: 24,
+                  color: Color(0xFF4C4C4C),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: const Color(0xFF222222),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      role,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF6F7B86),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      email,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF6F7B86),
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      phone,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF6F7B86),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Icon(
+                Icons.delete_outline_rounded,
+                size: 18,
+                color: Color(0xFFFF5E5E),
+              ),
+            ],
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    color: const Color(0xFF222222),
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  role,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF6F7B86),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  email,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF6F7B86),
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  phone,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF6F7B86),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          const Icon(
-            Icons.delete_outline_rounded,
-            size: 18,
-            color: Color(0xFFFF5E5E),
-          ),
-        ],
+        ),
       ),
     );
   }
