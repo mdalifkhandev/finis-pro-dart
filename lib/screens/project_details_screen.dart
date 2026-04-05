@@ -4,6 +4,7 @@ import 'create_project_screen.dart';
 import 'floor_room_setup_screen.dart';
 import 'project_analysis_screen.dart';
 import 'project_budget_details_screen.dart';
+import 'project_team_screen.dart';
 
 class ProjectDetailsScreen extends StatelessWidget {
   const ProjectDetailsScreen({super.key});
@@ -289,7 +290,17 @@ class ProjectDetailsScreen extends StatelessWidget {
                                 );
                               },
                             ),
-                            _ProjectMenuTile(label: 'Team'),
+                            _ProjectMenuTile(
+                              label: 'Team',
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (context) =>
+                                        const ProjectTeamScreen(),
+                                  ),
+                                );
+                              },
+                            ),
                             _ProjectMenuTile(label: 'Task'),
                             _ProjectMenuTile(label: 'Document', isLast: true),
                           ],
