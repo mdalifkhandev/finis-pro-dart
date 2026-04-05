@@ -40,7 +40,7 @@ class CompanyDocumentsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 28),
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.zero,
@@ -92,11 +92,11 @@ class _DocumentCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 14),
+      margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: const Color(0xFFE7EDF3)),
         boxShadow: const [
           BoxShadow(
@@ -110,11 +110,11 @@ class _DocumentCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 28,
-            height: 28,
+            width: 30,
+            height: 30,
             decoration: BoxDecoration(
               color: const Color(0xFFDCEBFF),
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: const Icon(
               Icons.description_outlined,
@@ -132,34 +132,37 @@ class _DocumentCard extends StatelessWidget {
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: const Color(0xFF222222),
                     fontWeight: FontWeight.w500,
+                    fontSize: 14,
                   ),
                 ),
-                const SizedBox(height: 2),
+                const SizedBox(height: 1),
                 Text(
                   typeAndSize,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: const Color(0xFF444444),
+                    fontSize: 13,
                   ),
                 ),
-                const SizedBox(height: 2),
+                const SizedBox(height: 1),
                 Text(
                   uploadedBy,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: const Color(0xFF8A939D),
+                    fontSize: 11,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 6),
           IconButton(
             onPressed: () {},
-            constraints: const BoxConstraints.tightFor(width: 24, height: 24),
+            constraints: const BoxConstraints.tightFor(width: 22, height: 22),
             padding: EdgeInsets.zero,
             visualDensity: VisualDensity.compact,
             icon: const Icon(
-              Icons.download_for_offline_outlined,
-              size: 18,
+              Icons.download_outlined,
+              size: 17,
               color: Color(0xFF224E6D),
             ),
           ),

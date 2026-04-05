@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'create_project_screen.dart';
+import 'company_documents_screen.dart';
 import 'floor_room_setup_screen.dart';
 import 'project_analysis_screen.dart';
 import 'project_budget_details_screen.dart';
@@ -302,7 +303,18 @@ class ProjectDetailsScreen extends StatelessWidget {
                               },
                             ),
                             _ProjectMenuTile(label: 'Task'),
-                            _ProjectMenuTile(label: 'Document', isLast: true),
+                            _ProjectMenuTile(
+                              label: 'Document',
+                              isLast: true,
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (context) =>
+                                        const CompanyDocumentsScreen(),
+                                  ),
+                                );
+                              },
+                            ),
                           ],
                         ),
                       ),
