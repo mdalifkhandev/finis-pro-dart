@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'create_project_screen.dart';
+import 'project_details_screen.dart';
 
 class AssignedProjectsScreen extends StatelessWidget {
   const AssignedProjectsScreen({super.key});
@@ -46,21 +47,42 @@ class AssignedProjectsScreen extends StatelessWidget {
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.zero,
-                  children: const [
+                  children: [
                     _AssignedProjectCard(
                       priority: 'MEDIUM',
                       priorityColor: Color(0xFFFFB800),
                       extraCount: '3+',
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) => const ProjectDetailsScreen(),
+                          ),
+                        );
+                      },
                     ),
                     _AssignedProjectCard(
                       priority: 'HIGH',
                       priorityColor: Color(0xFFFF5A5A),
                       extraCount: '10+',
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) => const ProjectDetailsScreen(),
+                          ),
+                        );
+                      },
                     ),
                     _AssignedProjectCard(
                       priority: 'LOW',
                       priorityColor: Color(0xFF2ECC71),
                       extraCount: '10+',
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) => const ProjectDetailsScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -101,141 +123,150 @@ class _AssignedProjectCard extends StatelessWidget {
     required this.priority,
     required this.priorityColor,
     required this.extraCount,
+    this.onTap,
   });
 
   final String priority;
   final Color priorityColor;
   final String extraCount;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 14),
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-      decoration: BoxDecoration(
-        color: Colors.white,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE6EDF3)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+        onTap: onTap,
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 14),
+          padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: const Color(0xFFE6EDF3)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 4,
-                ),
-                decoration: BoxDecoration(
-                  color: priorityColor.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  priority,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: priorityColor,
-                    fontWeight: FontWeight.w700,
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: priorityColor.withValues(alpha: 0.12),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      priority,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: priorityColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              const Icon(
-                Icons.apartment_rounded,
-                size: 24,
-                color: Color(0xFF224E6D),
-              ),
-            ],
-          ),
-          const SizedBox(height: 14),
-          Text(
-            'Electrical rough-in',
-            style: theme.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.w700,
-              color: const Color(0xFF222222),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Riverside Tower',
-            style: theme.textTheme.bodyLarge?.copyWith(
-              color: const Color(0xFF8A939D),
-            ),
-          ),
-          const SizedBox(height: 14),
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF8F9FB),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  'Sept 18, 2024',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF222222),
+                  const SizedBox(width: 10),
+                  const Icon(
+                    Icons.apartment_rounded,
+                    size: 24,
+                    color: Color(0xFF224E6D),
                   ),
-                ),
+                ],
               ),
-              const Spacer(),
-              const Icon(
-                Icons.check_box_outline_blank_rounded,
-                size: 18,
-                color: Color(0xFF4C8DFF),
-              ),
-              const SizedBox(width: 4),
+              const SizedBox(height: 14),
               Text(
-                '0/3',
-                style: theme.textTheme.bodyMedium?.copyWith(
+                'Electrical rough-in',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF222222),
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Riverside Tower',
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: const Color(0xFF8A939D),
                 ),
               ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              const _AvatarStack(),
-              const SizedBox(width: 8),
-              Container(
-                width: 34,
-                height: 34,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF19E56D),
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Text(
-                    extraCount,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: const Color(0xFF111111),
-                      fontWeight: FontWeight.w700,
+              const SizedBox(height: 14),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF8F9FB),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      'Sept 18, 2024',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF222222),
+                      ),
                     ),
                   ),
-                ),
+                  const Spacer(),
+                  const Icon(
+                    Icons.check_box_outline_blank_rounded,
+                    size: 18,
+                    color: Color(0xFF4C8DFF),
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    '0/3',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: const Color(0xFF8A939D),
+                    ),
+                  ),
+                ],
               ),
-              const Spacer(),
-              const Icon(
-                Icons.access_time_rounded,
-                size: 18,
-                color: Color(0xFF222222),
-              ),
-              const SizedBox(width: 4),
-              Text(
-                '2',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: const Color(0xFF555555),
-                ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  const _AvatarStack(),
+                  const SizedBox(width: 8),
+                  Container(
+                    width: 34,
+                    height: 34,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF19E56D),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Text(
+                        extraCount,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: const Color(0xFF111111),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  const Icon(
+                    Icons.access_time_rounded,
+                    size: 18,
+                    color: Color(0xFF222222),
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    '2',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: const Color(0xFF555555),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
