@@ -53,7 +53,7 @@ class FloorRoomSetupScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   OutlinedButton.icon(
-                    onPressed: () {},
+                    onPressed: () => _showAddFloorSheet(context),
                     style: OutlinedButton.styleFrom(
                       minimumSize: const Size(88, 38),
                       foregroundColor: const Color(0xFF222222),
@@ -88,6 +88,110 @@ class FloorRoomSetupScreen extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+void _showAddFloorSheet(BuildContext context) {
+  showModalBottomSheet<void>(
+    context: context,
+    backgroundColor: Colors.white,
+    isScrollControlled: true,
+    showDragHandle: true,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (context) => const _AddFloorBottomSheet(),
+  );
+}
+
+class _AddFloorBottomSheet extends StatelessWidget {
+  const _AddFloorBottomSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+
+    return Padding(
+      padding: EdgeInsets.fromLTRB(16, 0, 16, bottomInset + 16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Add New Room',
+            style: theme.textTheme.titleLarge?.copyWith(
+              color: const Color(0xFF222222),
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Row(
+            children: [
+              Expanded(child: _SheetInput(height: 48)),
+              SizedBox(width: 12),
+              Text(
+                'to',
+                style: TextStyle(fontSize: 16, color: Color(0xFF222222)),
+              ),
+              SizedBox(width: 12),
+              Expanded(child: _SheetInput(height: 48)),
+            ],
+          ),
+          const SizedBox(height: 18),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              onPressed: () => Navigator.of(context).pop(),
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(48),
+                backgroundColor: const Color(0xFF2A5977),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: const Text('Submit'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SheetInput extends StatelessWidget {
+  const _SheetInput({required this.height});
+
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+      child: TextField(
+        style: const TextStyle(fontSize: 14, color: Color(0xFF222222)),
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 10,
+            vertical: 12,
+          ),
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Color(0xFFCFD6DD)),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Color(0xFFCFD6DD)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Color(0xFF2A5977)),
           ),
         ),
       ),

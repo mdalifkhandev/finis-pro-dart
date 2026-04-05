@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'create_project_screen.dart';
 import 'floor_room_setup_screen.dart';
+import 'project_analysis_screen.dart';
+import 'project_budget_details_screen.dart';
 
 class ProjectDetailsScreen extends StatelessWidget {
   const ProjectDetailsScreen({super.key});
@@ -264,9 +266,29 @@ class ProjectDetailsScreen extends StatelessWidget {
                           border: Border.all(color: const Color(0xFFE7EDF3)),
                         ),
                         child: Column(
-                          children: const [
-                            _ProjectMenuTile(label: 'Project details'),
-                            _ProjectMenuTile(label: 'Project Analysis'),
+                          children: [
+                            _ProjectMenuTile(
+                              label: 'Project details',
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (context) =>
+                                        const ProjectBudgetDetailsScreen(),
+                                  ),
+                                );
+                              },
+                            ),
+                            _ProjectMenuTile(
+                              label: 'Project Analysis',
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (context) =>
+                                        const ProjectAnalysisScreen(),
+                                  ),
+                                );
+                              },
+                            ),
                             _ProjectMenuTile(label: 'Team'),
                             _ProjectMenuTile(label: 'Task'),
                             _ProjectMenuTile(label: 'Document', isLast: true),
@@ -312,10 +334,15 @@ class _ProjectInfoRow extends StatelessWidget {
 }
 
 class _ProjectMenuTile extends StatelessWidget {
-  const _ProjectMenuTile({required this.label, this.isLast = false});
+  const _ProjectMenuTile({
+    required this.label,
+    this.isLast = false,
+    this.onTap,
+  });
 
   final String label;
   final bool isLast;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -342,7 +369,7 @@ class _ProjectMenuTile extends StatelessWidget {
           size: 18,
           color: Color(0xFF222222),
         ),
-        onTap: () {},
+        onTap: onTap ?? () {},
       ),
     );
   }
