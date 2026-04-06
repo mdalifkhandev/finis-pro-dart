@@ -5,6 +5,7 @@ import 'company_documents_screen.dart';
 import 'floor_room_setup_screen.dart';
 import 'project_analysis_screen.dart';
 import 'project_budget_details_screen.dart';
+import 'project_task_screen.dart';
 import 'project_team_screen.dart';
 
 class ProjectDetailsScreen extends StatelessWidget {
@@ -302,7 +303,17 @@ class ProjectDetailsScreen extends StatelessWidget {
                                 );
                               },
                             ),
-                            _ProjectMenuTile(label: 'Task'),
+                            _ProjectMenuTile(
+                              label: 'Task',
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (context) =>
+                                        const ProjectTaskScreen(),
+                                  ),
+                                );
+                              },
+                            ),
                             _ProjectMenuTile(
                               label: 'Document',
                               isLast: true,
