@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/company/create_company_widgets.dart';
 
 class CreateCompanyScreen extends StatelessWidget {
   const CreateCompanyScreen({super.key});
@@ -61,22 +62,22 @@ class CreateCompanyScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 18),
-                  const _CompanyFormField(hintText: 'Company name'),
+                  const CompanyFormField(hintText: 'Company name'),
                   const SizedBox(height: 14),
-                  const _DropdownField(hintText: 'Select industry'),
+                  const CompanyDropdownField(hintText: 'Select industry'),
                   const SizedBox(height: 14),
-                  const _CompanyFormField(
+                  const CompanyFormField(
                     hintText: 'Brief description of the company...',
                     maxLines: 4,
                   ),
                   const SizedBox(height: 14),
-                  const _CompanyFormField(hintText: '+1 (555)000-00000'),
+                  const CompanyFormField(hintText: '+1 (555)000-00000'),
                   const SizedBox(height: 14),
-                  const _CompanyFormField(hintText: 'abc@company.com'),
+                  const CompanyFormField(hintText: 'abc@company.com'),
                   const SizedBox(height: 14),
-                  const _CompanyFormField(hintText: 'Website link'),
+                  const CompanyFormField(hintText: 'Website link'),
                   const SizedBox(height: 14),
-                  const _CompanyFormField(hintText: 'Business address'),
+                  const CompanyFormField(hintText: 'Business address'),
                   const SizedBox(height: 20),
                   SizedBox(
                     width: double.infinity,
@@ -102,84 +103,6 @@ class CreateCompanyScreen extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _CompanyFormField extends StatelessWidget {
-  const _CompanyFormField({required this.hintText, this.maxLines = 1});
-
-  final String hintText;
-  final int maxLines;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      maxLines: maxLines,
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: const TextStyle(color: Color(0xFFC1C1C1), fontSize: 17),
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: maxLines > 1 ? 18 : 16,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE2E7EC)),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE2E7EC)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFF2A5977)),
-        ),
-      ),
-    );
-  }
-}
-
-class _DropdownField extends StatelessWidget {
-  const _DropdownField({required this.hintText});
-
-  final String hintText;
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
-      initialValue: null,
-      items: const [
-        DropdownMenuItem(value: 'Construction', child: Text('Construction')),
-        DropdownMenuItem(value: 'Real Estate', child: Text('Real Estate')),
-        DropdownMenuItem(value: 'Manufacturing', child: Text('Manufacturing')),
-      ],
-      onChanged: (_) {},
-      icon: const Icon(Icons.keyboard_arrow_down_rounded),
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: const TextStyle(color: Color(0xFFC1C1C1), fontSize: 17),
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE2E7EC)),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE2E7EC)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFF2A5977)),
         ),
       ),
     );
